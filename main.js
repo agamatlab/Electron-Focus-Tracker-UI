@@ -9,7 +9,8 @@ app.whenReady().then(() => {
         // frame: false,  // Removes border and title bar
         transparent: true, // Optional: Make the window transparent
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         }
     });
 
@@ -20,4 +21,6 @@ app.whenReady().then(() => {
             app.quit();
         }
     });
+
+    mainWindow.webContents.openDevTools();
 });

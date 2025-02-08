@@ -1,15 +1,18 @@
-function fetchJSONData() {
-  fetch('./data.json')
-      .then(response => {
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();  
-      })
-      .then(data => console.log(data))  
-      .catch(error => console.error('Failed to fetch data:', error)); 
+const fs = require('fs');
+
+function loadJsonSync(filename) {
+    try {
+        const data = fs.readFileSync(filename, "utf8"); // Read file synchronously
+        const jsonData = JSON.parse(data); // Parse JSON
+        let focusTimes = jsonData.map(item => item.focusTime); // Extract focusTime values
+        console.log(focusTimes); // Output: [23, 42, 63, 55, 73, 75]
+        return focusTimes;
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
 }
-let progress = fetchJSONData();  
+focusTimes  = loadJsonSync("./data.json");
 
 var chartOptions = {
     chart: {
@@ -28,11 +31,13 @@ var chartOptions = {
     series: [
       {
         name: 'Focused',
-        data: progress,
+        data: focusTimes,
+        color: "rgb(59, 241, 31)"
       },
       {
         name: 'Distracted',
-        data: [77, 58, 37, 45, 27, 25],
+        data: focusTimes.map(item=>100-item),
+        color: "rgb(98, 98, 98)"
       }
     ],
     title: {
@@ -52,6 +57,7 @@ var chartOptions = {
       hover: {
         size: 9,
       },
+      colors: ["rgb(245, 245, 245)","rgb(59, 241, 31)"]
     },
     grid: {
       show: true,
