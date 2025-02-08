@@ -173,3 +173,8 @@ body {
       position: relative; 
       z-index: 3;
     }
+
+    
+    .apexcharts-tooltip-active  {
+      color: #1c1c1e;
+    }

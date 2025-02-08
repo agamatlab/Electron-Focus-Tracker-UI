@@ -68,7 +68,7 @@ var chartOptions = {
     labels: ['1st', '2nd', '3rd', '4th', '5th', '6th'],
     xaxis: {
       tooltip: {
-        enabled: false,
+        enabled: false
       },
     },
     legend: {
