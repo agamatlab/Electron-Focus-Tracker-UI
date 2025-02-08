@@ -57,7 +57,7 @@ var chartOptions = {
       hover: {
         size: 9,
       },
-      colors: ["rgb(245, 245, 245)","rgb(59, 241, 31)"]
+      colors: ["rgb(59, 241, 31)","rgb(98, 98, 98)"]
     },
     grid: {
       show: true,
