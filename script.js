@@ -1,3 +1,16 @@
+function fetchJSONData() {
+  fetch('./data.json')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();  
+      })
+      .then(data => console.log(data))  
+      .catch(error => console.error('Failed to fetch data:', error)); 
+}
+let progress = fetchJSONData();  
+
 var chartOptions = {
     chart: {
       height: 400,
@@ -15,7 +28,7 @@ var chartOptions = {
     series: [
       {
         name: 'Focused',
-        data: [23, 42, 63, 55, 73, 75],
+        data: progress,
       },
       {
         name: 'Distracted',
