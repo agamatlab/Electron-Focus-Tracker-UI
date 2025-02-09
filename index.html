@@ -30,12 +30,40 @@
         <div class="main-content">
           <header>
             <h1>General Information</h1>
-            <button>Upgrade</button>
           </header>
 
 
           <div class="dashboard" id="dashboard">
-            <div class="card gradient-bg settings"></div>
+            <div class="card gradient-bg results">
+              <div class="title">
+                <h2>Results of the last session:</h2>
+              </div>
+              <div class="pieDiv">
+                <div class="pieInfo">
+
+                  <div class="infoLine" >
+                    <div class="infoColor" style="background-color: #0f0;"></div>
+                    <p>1h 32m</p>
+                  </div>
+
+                  <div class="infoLine">
+                    <div class="infoColor" style="background-color: rgb(118, 118, 118);"></div>
+                    <p>31m</p>
+                  </div>
+
+                </div>
+                <div class="cardPieContainer">
+                  <div class="cardPie">
+                    <div class ="rating">
+                      <h2> <span class="counter" data-target="75">75</span> <sup>%</sup> <br> Focused </h2>
+                      <div class="block"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
             <div class="card gradient-bg progress">
               
               <div class = "chartCard">
@@ -55,11 +83,16 @@
           </div>
 
           <div class="carousel" id="carousel">
-            <button onclick="toggleCarousel()">Back</button>
             <div class="carousel-container">
-              <div class="carousel-slide" id="carousel-slide">
-                <div class="image-placeholder" style="background-color: #000000; background-image: url(./assets/gaze_heatmap_overlay.png);" ></div>
+              <div class="carousel-slide" id="carousel-slide" style="margin: auto;">
+                <div class="image-placeholder" style="background-image: url(./assets/gaze_heatmap_overlay.png); " ></div>
               </div>
+            </div>
+            <div class="backDiv">
+              <div  onclick="toggleCarousel()" >
+                  <img src="./assets/arrow.png" alt="">
+              </div>
+              <!-- <button onclick="toggleCarousel()" style="border-radius: 100px; color: white;">Back</button> -->
             </div>
           
           </div>
@@ -69,6 +102,16 @@
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="./script.js"></script>
         <script>
+          let rating = document.getElementsByClassName('rating')[0];
+          let block = document.getElementsByClassName('block');
+          
+          for(var i = 1; i < 100; i++){
+            rating.innerHTML += "<div class='block'></div>";
+            block[i].style.transform = "rotate("+3.6*i+"deg)";
+            block[i].style.animationDelay = `${i/40}s`;
+          }
+          
+
           // Require Node.js modules (works if nodeIntegration is enabled)
           const path = require('path');
 
@@ -114,7 +157,7 @@
             console.log("toggled")
             console.log(dashboard.style.display.toString());
             if(dashboard.style.display == "grid"){
-              carousel.style.display = "block";
+              carousel.style.display = "flex";
               dashboard.style.display = "none";
             } else{
               carousel.style.display = "none";
