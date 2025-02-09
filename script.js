@@ -12,6 +12,7 @@ function loadJsonSync(filename) {
         return null;
     }
 }
+
 focusTimes  = loadJsonSync("./data.json");
 
 var chartOptions = {
