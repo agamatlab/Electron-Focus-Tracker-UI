@@ -22,5 +22,5 @@ app.whenReady().then(() => {
         }
     });
 
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 });
